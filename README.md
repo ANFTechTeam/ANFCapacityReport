@@ -24,3 +24,6 @@ cd ANFCapacityReport
 
 ## Run the script with all options
 ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate
+
+## Sample Output
+![Sample Output](../img/../ANFCapacityReport/img/reportonly.png).

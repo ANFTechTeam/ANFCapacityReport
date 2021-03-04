@@ -74,11 +74,6 @@ foreach($volume in $volumes) {
     $VolumeConsumedSizes.add($volume.ResourceId, $consumedSize / 1024 / 1024 / 1024)
 }
 ## Collect all Volume Consumed Sizes ##
-Write-Host ''
-Write-Host '*******************************************************' -ForegroundColor Yellow
-Write-Host 'Target Volume full threshold for remediation:'$PercentFullThreshold'%' -ForegroundColor Yellow
-Write-Host '*******************************************************' -ForegroundColor Yellow
-Write-Host ''
 
 ## Get List of Unique Regions ##
 $netAppRegions = @()
