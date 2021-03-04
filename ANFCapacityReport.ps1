@@ -117,7 +117,7 @@ foreach($netAppRegion in $netAppRegions) {
                 if($percentConsumed -ge $PercentFullThreshold) {
                     $errorCondition = 1
                     $newVolumeQuota = [math]::Round($volumeConsumedSizes[$volume.ResourceId] * (100/($PercentFullThreshold-3)),0)
-                    if($newVolumeQuota -gt 1024) {
+                    if($newVolumeQuota -gt 102400) {
                         $errorCondition = 2
                         $poolError = 2
                     } else {
