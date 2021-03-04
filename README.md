@@ -1,8 +1,14 @@
 # ANFCapacityReport
 A PowerShell script to check and remediate capacity issues with Azure NetApp Files volumes.
 
-### Install the Az.NetAppFiles PowerShell Module
+## Install the Az.NetAppFiles PowerShell Module
 Install-Module -Name Az.NetAppFiles -AllowClobber -Force
+
+## Clone this respository
+git clone https://github.com/ANFTechTeam/ANFCapacityReport.git
+
+## Change directory to ANFCapacityReport
+cd ANFCapacityReport
 
 ## Run the script in report only mode
 ./ANFCapacityReport.ps1
