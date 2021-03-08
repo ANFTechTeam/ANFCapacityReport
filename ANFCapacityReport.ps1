@@ -125,7 +125,7 @@ foreach($netAppRegion in $netAppRegions) {
                 if($errorCondition -eq 0) {
                     Write-Host '    |--' $volume.Name.Split("/")[2]'(Consuming'$displayConsumed' GiB of provisioned' $volumeCapacities[$volume.ResourceId]'GiB,'$displayPercentConsumed'% consumed)'
                 } elseif($errorCondition -eq 1) {
-                    Write-Host '    |--' $volume.Name.Split("/")[2]'**WARNING**'$displayConsumed' consumed exceeds '$PercentFullThreshold'% threshold. Current Size:' $volumeCapacities[$volume.ResourceId]'GiB, Suggested size:'$newVolumeQuota' GiB' -ForegroundColor Yellow
+                    Write-Host '    |--' $volume.Name.Split("/")[2]'**WARNING**'$displayConsumed' GiB consumed exceeds '$PercentFullThreshold'% threshold. Current Size:' $volumeCapacities[$volume.ResourceId]'GiB, Suggested size:'$newVolumeQuota' GiB' -ForegroundColor Yellow
                 } elseif($errorCondition -eq 2) {
                     if($volumeCapacities[$volume.ResourceId -gt 102400]) {
                         Write-Host 'Current volume consumption is greater than maximium of 100TiB, please contact Microsoft Support.' -ForegroundColor Red
