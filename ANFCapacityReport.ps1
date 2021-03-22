@@ -1,7 +1,8 @@
 param (
     [switch]$IgnoreFailedVolumes = $false,
     [string]$PercentFullThreshold = 80,
-    [switch]$Remediate = $false
+    [switch]$Remediate = $false,
+    [switch]$Yes = $false
  )
 
 
@@ -155,8 +156,10 @@ foreach($netAppRegion in $netAppRegions) {
                         $newPoolSizeinTiB = $newPoolSizeinGiB / 1024
                         $newPoolSizeinBytes = $newPoolSizeinGiB * 1024 * 1024 * 1024
                         Write-Host '  Pool size will need to be increased to accomodate new volume sizes. Suggested size:'$newPoolSizeinGiB' GiB ( '$newPoolSizeinTiB' TiB )' -Foreground Red
-                        $continue = Read-Host -Prompt "  To continue with suggested pool size increase, enter 'yes'"
-                        if($continue -eq 'yes') {
+                        if($yes -eq $false) {
+                            $continue = Read-Host -Prompt "  To continue with suggested pool size increase, enter 'yes'"
+                        }
+                        if($continue -eq 'yes' -or $yes -eq $true) {
                             Write-Host '  Resizing Capacity Pool...' -ForegroundColor Red
                             Update-AzNetAppFilesPool -ResourceId $capacityPool.ResourceId -PoolSize $newPoolSizeinBytes
                         } else {
@@ -166,8 +169,10 @@ foreach($netAppRegion in $netAppRegions) {
                  else {
                     Write-Host '  Existing pool size is large enough to accomodate new volume sizes.' -Foreground Green
                  }
-                    $continue = Read-Host -Prompt "  To continue with suggested volume resize, enter 'yes'"
-                    if($continue -eq 'yes') {
+                    if($yes -eq $false) {
+                        $continue = Read-Host -Prompt "  To continue with suggested volume resize, enter 'yes'"
+                    }
+                        if($continue -eq 'yes' -or $yes -eq $true) {
                         Write-Host '  Resizing Volumes...' -ForegroundColor Red
                         foreach($volume in $volumes | Where-Object {$_.Location -eq $netAppRegion -and $_.Name.Split("/")[1] -eq $capacityPool.Name.Split("/")[1]}) {
                             if($newVolumeCapacities[$volume.ResourceId] -gt $volumeCapacities[$volume.ResourceId]) {

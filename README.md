@@ -1,29 +1,43 @@
-## ANFCapacityReport
+# ANFCapacityReport
+
 A PowerShell script to check and remediate capacity issues with Azure NetApp Files volumes.
 
-### Install the Az.NetAppFiles PowerShell Module
-Install-Module -Name Az.NetAppFiles -AllowClobber -Force
+## Install the Az.NetAppFiles PowerShell Module
 
-### Clone this respository
-git clone https://github.com/ANFTechTeam/ANFCapacityReport.git
+    Install-Module -Name Az.NetAppFiles -AllowClobber -Force
 
-### Change directory to ANFCapacityReport
-cd ANFCapacityReport
+## Clone this respository
 
-### Run the script in report only mode
-./ANFCapacityReport.ps1
+    git clone https://github.com/ANFTechTeam/ANFCapacityReport.git
 
-### Run the script and ignore failed volumes
-./ANFCapacityReport.ps1 -IgnoreFailedVolumes
+## Change directory to ANFCapacityReport**
 
-### Specify a custom volume percent full threshold (default is 80%)
-./ANFCapacityReport.ps1 -PercentFullThreshold 75
+    cd ANFCapacityReport
 
-### Run the script in remediate mode to fix volumes above specified threshold
-./ANFCapacityReport.ps1 -Remediate
+## Run the script in report only mode
 
-### Run the script with all options
-./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate
+    ./ANFCapacityReport.ps1
 
-### Sample Output
+## Run the script and ignore failed volumes
+
+    ./ANFCapacityReport.ps1 -IgnoreFailedVolumes
+
+## Specify a custom volume percent full threshold (default is 80%)
+
+    ./ANFCapacityReport.ps1 -PercentFullThreshold 75
+
+## Run the script in remediate mode to fix volumes above specified threshold
+
+    ./ANFCapacityReport.ps1 -Remediate
+
+## Run the script in remediate mode and automatically answer 'yes' to all resize prompts (non-interactive mode)
+
+    ./ANFCapacityReport.ps1 -Remediate -Yes
+
+## Run the script with all options
+
+    ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate -Yes
+
+## Sample Output
+
 ![Sample Output](https://github.com/ANFTechTeam/ANFCapacityReport/blob/main/img/reportonly.png)
