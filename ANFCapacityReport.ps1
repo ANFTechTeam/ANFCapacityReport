@@ -66,7 +66,7 @@ $startTime = [datetime]::Now.AddMinutes(-30)
 $endTime = [datetime]::Now
 foreach($volume in $volumes) {
     $consumedSize = 0
-    $volumeConsumedDataPoints = Get-AzMetric -ResourceId $volume.ResourceId -MetricName "VolumeLogicalSize" -StartTime $startTime -EndTime $endTime -TimeGrain 00:5:00 -WarningAction:SilentlyContinue
+    $volumeConsumedDataPoints = Get-AzMetric -ResourceId $volume.ResourceId -MetricName "VolumeLogicalSize" -StartTime $startTime -EndTime $endTime -TimeGrain 00:5:00 -WarningAction:SilentlyContinue -EA SilentlyContinue
     foreach($dataPoint in $volumeConsumedDataPoints.data) {
         if($dataPoint.Average -gt $consumedSize) {
             $consumedSize = $dataPoint.Average
@@ -89,13 +89,13 @@ $netAppRegions = $netAppRegions | Sort-Object -Unique
 foreach($netAppRegion in $netAppRegions) {
     $netAppRegion
     foreach($netAppAccount in $netAppAccounts | Where-Object {$_.Location -eq $netAppRegion}) {
-        Write-Host '|--' $netappAccount.Name ' (NetApp Account)' -ForegroundColor Yellow
+        Write-Host '|--' $netappAccount.Name '( NetApp Account in'$netAppAccount.ResourceGroupName'resource group. )' -ForegroundColor Yellow
         foreach($capacityPool in $capacityPools | Where-Object {$_.Location -eq $netAppRegion -and $_.Name.Split("/")[0] -eq $netAppAccount.Name}) {
             $poolError = 0
             $poolTotalAllocated = 0
             $poolTotalConsumed = 0
             $newPoolTotalAllocated = 0
-            Write-Host '  |--' $capacityPool.Name.Split("/")[1] '('$poolDetails.QosType'QoS Pool,'$poolCapacities[$capacityPool.ResourceId]'GiB )' -ForegroundColor Magenta
+            Write-Host '  |--' $capacityPool.Name.Split("/")[1] '('$poolDetails.QosType'QoS Pool ,'$poolCapacities[$capacityPool.ResourceId]'GiB )' -ForegroundColor Magenta
             foreach($volume in $volumes | Where-Object {$_.Location -eq $netAppRegion -and $_.Name.Split("/")[1] -eq $capacityPool.Name.Split("/")[1]}) {
                 $displayConsumed = 0
                 $errorCondition = 0
