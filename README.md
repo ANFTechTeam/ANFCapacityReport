@@ -43,7 +43,7 @@ A PowerShell script to check and **optionally** remediate capacity issues with A
 
 ## Run the script against all Azure subscriptions
 
-    foreach($sub in Get-AzSubscription) { Set-AzContext $sub; ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate -Yes }
+    foreach($sub in Get-AzSubscription) { Set-AzContext $sub; ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 }
 
 ## Sample Output
 
