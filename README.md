@@ -2,6 +2,9 @@
 
 A PowerShell script to check and remediate capacity issues with Azure NetApp Files volumes.
 
+## Change Log
+    3/24/2021 - Adding instructions to run against all Azure subscriptions (see below)
+
 ## Install the Az.NetAppFiles PowerShell Module
 
     Install-Module -Name Az.NetAppFiles -AllowClobber -Force
@@ -37,6 +40,10 @@ A PowerShell script to check and remediate capacity issues with Azure NetApp Fil
 ## Run the script with all options
 
     ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate -Yes
+
+## Run the script against all Azure subscriptions
+
+    foreach($sub in Get-AzSubscription) { Set-AzContext $sub; ./ANFCapacityReport.ps1 -IgnoreFailedVolumes -PercentFullThreshold 75 -Remediate -Yes }
 
 ## Sample Output
 
