@@ -1,6 +1,6 @@
 # ANFCapacityReport
 
-A PowerShell script to check and remediate capacity issues with Azure NetApp Files volumes.
+A PowerShell script to check and **optionally** remediate capacity issues with Azure NetApp Files volumes.
 
 ## Change Log
     3/24/2021 - Adding instructions to run against all Azure subscriptions (see below)
