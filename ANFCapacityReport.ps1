@@ -15,7 +15,7 @@ Write-Host ''
 Write-Host 'Created by Sean Luce, https://seanluce.com'
 Write-Host '****************************************************************************************' -ForegroundColor Yellow
 Write-Host '****************************************************************************************' -ForegroundColor Yellow
-Write-Host 'Azure NetApp Files - Hard Quotas - Beginning April 1st, 2021'
+Write-Host 'Azure NetApp Files - Hard Quotas - Beginning April 30th, 2021'
 Write-Host 'With the volume hard quota change, Azure NetApp Files volumes will'
 Write-Host 'no longer be thin provisioned at (the maximum) 100 TiB.'
 Write-Host 'The volumes will be provisioned at the actual configured size (quota).'
