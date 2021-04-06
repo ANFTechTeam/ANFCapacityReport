@@ -95,6 +95,7 @@ foreach($netAppRegion in $netAppRegions) {
             $poolTotalAllocated = 0
             $poolTotalConsumed = 0
             $newPoolTotalAllocated = 0
+            $poolDetails = Get-AzNetAppFilesPool -ResourceId $capacityPool.ResourceId
             Write-Host '  |--' $capacityPool.Name.Split("/")[1] '('$poolDetails.QosType'QoS Pool ,'$poolCapacities[$capacityPool.ResourceId]'GiB )' -ForegroundColor Magenta
             foreach($volume in $volumes | Where-Object {$_.Location -eq $netAppRegion -and $_.Name.Split("/")[1] -eq $capacityPool.Name.Split("/")[1]}) {
                 $displayConsumed = 0
